@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {
+    "net6.0": {
       "AtkSharp/3.24.24.95": {
         "type": "package",
         "dependencies": {
@@ -189,34 +189,34 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0": [
+    "net6.0": [
       "GtkSharp >= 3.24.24.95"
     ]
   },
   "packageFolders": {
-    "/home/bryanthr/.nuget/packages/": {}
+    "/home/bryant/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/bryanthr/Documentos/EDD/Tareas/EDD_tarea3/EDD_tarea3.csproj",
+      "projectUniqueName": "/home/bryant/Documentos/EDD_tarea3/EDD_tarea3.csproj",
       "projectName": "EDD_tarea3",
-      "projectPath": "/home/bryanthr/Documentos/EDD/Tareas/EDD_tarea3/EDD_tarea3.csproj",
-      "packagesPath": "/home/bryanthr/.nuget/packages/",
-      "outputPath": "/home/bryanthr/Documentos/EDD/Tareas/EDD_tarea3/obj/",
+      "projectPath": "/home/bryant/Documentos/EDD_tarea3/EDD_tarea3.csproj",
+      "packagesPath": "/home/bryant/.nuget/packages/",
+      "outputPath": "/home/bryant/Documentos/EDD_tarea3/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/bryanthr/.nuget/NuGet/NuGet.Config"
+        "/home/bryant/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net8.0"
+        "net6.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "projectReferences": {}
         }
       },
@@ -227,8 +227,8 @@
       }
     },
     "frameworks": {
-      "net8.0": {
-        "targetAlias": "net8.0",
+      "net6.0": {
+        "targetAlias": "net6.0",
         "dependencies": {
           "GtkSharp": {
             "target": "Package",
@@ -251,7 +251,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.112/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
       }
     }
   }

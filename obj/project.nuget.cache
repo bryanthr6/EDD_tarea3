@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "TExSROe7TfegvRztoroIXwit+y1vW0KoYV5ER5O9eazwkBdHpNhiK3xPvRiukKHdFW3aKMeByBO6bec6EeQuyw==",
+  "dgSpecHash": "qGX5f2lYv57g2uLDjBD2dUHnLbT6fjFvFQ1HoQFo1b4WexEzqRsU++UWRf1hWhDHNpDQPYiB0b+pqT/rBYj9XA==",
   "success": true,
-  "projectFilePath": "/home/bryanthr/Documentos/EDD/Tareas/EDD_tarea3/EDD_tarea3.csproj",
+  "projectFilePath": "/home/bryant/Documentos/EDD_tarea3/EDD_tarea3.csproj",
   "expectedPackageFiles": [
-    "/home/bryanthr/.nuget/packages/atksharp/3.24.24.95/atksharp.3.24.24.95.nupkg.sha512",
-    "/home/bryanthr/.nuget/packages/cairosharp/3.24.24.95/cairosharp.3.24.24.95.nupkg.sha512",
-    "/home/bryanthr/.nuget/packages/gdksharp/3.24.24.95/gdksharp.3.24.24.95.nupkg.sha512",
-    "/home/bryanthr/.nuget/packages/giosharp/3.24.24.95/giosharp.3.24.24.95.nupkg.sha512",
-    "/home/bryanthr/.nuget/packages/glibsharp/3.24.24.95/glibsharp.3.24.24.95.nupkg.sha512",
-    "/home/bryanthr/.nuget/packages/gtksharp/3.24.24.95/gtksharp.3.24.24.95.nupkg.sha512",
-    "/home/bryanthr/.nuget/packages/pangosharp/3.24.24.95/pangosharp.3.24.24.95.nupkg.sha512"
+    "/home/bryant/.nuget/packages/atksharp/3.24.24.95/atksharp.3.24.24.95.nupkg.sha512",
+    "/home/bryant/.nuget/packages/cairosharp/3.24.24.95/cairosharp.3.24.24.95.nupkg.sha512",
+    "/home/bryant/.nuget/packages/gdksharp/3.24.24.95/gdksharp.3.24.24.95.nupkg.sha512",
+    "/home/bryant/.nuget/packages/giosharp/3.24.24.95/giosharp.3.24.24.95.nupkg.sha512",
+    "/home/bryant/.nuget/packages/glibsharp/3.24.24.95/glibsharp.3.24.24.95.nupkg.sha512",
+    "/home/bryant/.nuget/packages/gtksharp/3.24.24.95/gtksharp.3.24.24.95.nupkg.sha512",
+    "/home/bryant/.nuget/packages/pangosharp/3.24.24.95/pangosharp.3.24.24.95.nupkg.sha512"
   ],
   "logs": []
 }

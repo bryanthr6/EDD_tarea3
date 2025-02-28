@@ -1,130 +1,124 @@
 ﻿using System;
 using Gtk;
-using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
-public unsafe class Nodo
+public class Nodo
 {
     public int ID;
     public string Repuesto;
     public string Detalles;
-    public Nodo* Siguiente;
+    public Nodo Siguiente;
 }
 
-public unsafe class ListaCircular
+public class ListaCircular
 {
-    private Nodo* cabeza = null;
-
-    public void Agregar(int id, string repuesto, string detalles)
+    private Nodo cabeza;
+    
+    public void AgregarRepuesto(int id, string repuesto, string detalles)
     {
-        Nodo* nuevo = (Nodo*)Marshal.AllocHGlobal(sizeof(Nodo));
-        nuevo->ID = id;
-        nuevo->Repuesto = repuesto;
-        nuevo->Detalles = detalles;
-        nuevo->Siguiente = null;
-
+        Nodo nuevo = new Nodo { ID = id, Repuesto = repuesto, Detalles = detalles };
         if (cabeza == null)
         {
             cabeza = nuevo;
-            cabeza->Siguiente = cabeza;
+            cabeza.Siguiente = cabeza;
         }
         else
         {
-            Nodo* temp = cabeza;
-            while (temp->Siguiente != cabeza)
-                temp = temp->Siguiente;
-            temp->Siguiente = nuevo;
-            nuevo->Siguiente = cabeza;
+            Nodo temp = cabeza;
+            while (temp.Siguiente != cabeza)
+            {
+                temp = temp.Siguiente;
+            }
+            temp.Siguiente = nuevo;
+            nuevo.Siguiente = cabeza;
         }
     }
-
-    public Nodo* Buscar(int id)
+    
+    public Nodo BuscarRepuesto(int id)
     {
         if (cabeza == null) return null;
-        Nodo* temp = cabeza;
+        Nodo temp = cabeza;
         do
         {
-            if (temp->ID == id)
+            if (temp.ID == id)
                 return temp;
-            temp = temp->Siguiente;
+            temp = temp.Siguiente;
         } while (temp != cabeza);
         return null;
     }
 }
 
-public class AplicacionGTK : Window
+public class MainWindow : Window
 {
-    private Entry entryID, entryRepuesto, entryDetalles;
-    private TextView output;
     private ListaCircular lista = new ListaCircular();
+    private Entry idEntry, repuestoEntry, detallesEntry;
+    private Label resultadoLabel;
 
-    public AplicacionGTK() : base("Lista Circular - GTK")
+    public MainWindow() : base("Lista Circular de Repuestos")
     {
         SetDefaultSize(400, 300);
         SetPosition(WindowPosition.Center);
+        DeleteEvent += delegate { Application.Quit(); };
 
         VBox vbox = new VBox();
 
-        entryID = new Entry { PlaceholderText = "ID" };
-        entryRepuesto = new Entry { PlaceholderText = "Repuesto" };
-        entryDetalles = new Entry { PlaceholderText = "Detalles" };
-        Button btnAgregar = new Button("Agregar");
-        Button btnBuscar = new Button("Buscar");
-        output = new TextView { Editable = false };
+        idEntry = new Entry { PlaceholderText = "ID" };
+        repuestoEntry = new Entry { PlaceholderText = "Nombre del repuesto" };
+        detallesEntry = new Entry { PlaceholderText = "Detalles" };
+        Button agregarBtn = new Button("Agregar Repuesto");
+        Button buscarBtn = new Button("Buscar Repuesto por ID");
+        resultadoLabel = new Label("");
 
-        btnAgregar.Clicked += OnAgregarClicked;
-        btnBuscar.Clicked += OnBuscarClicked;
+        agregarBtn.Clicked += AgregarRepuesto;
+        buscarBtn.Clicked += BuscarRepuesto;
 
-        vbox.PackStart(entryID, false, false, 5);
-        vbox.PackStart(entryRepuesto, false, false, 5);
-        vbox.PackStart(entryDetalles, false, false, 5);
-        vbox.PackStart(btnAgregar, false, false, 5);
-        vbox.PackStart(btnBuscar, false, false, 5);
-        vbox.PackStart(output, true, true, 5);
+        vbox.PackStart(idEntry, false, false, 5);
+        vbox.PackStart(repuestoEntry, false, false, 5);
+        vbox.PackStart(detallesEntry, false, false, 5);
+        vbox.PackStart(agregarBtn, false, false, 5);
+        vbox.PackStart(buscarBtn, false, false, 5);
+        vbox.PackStart(resultadoLabel, false, false, 5);
 
         Add(vbox);
         ShowAll();
     }
 
-    private void OnAgregarClicked(object sender, EventArgs e)
+    private void AgregarRepuesto(object sender, EventArgs e)
     {
-        if (int.TryParse(entryID.Text, out int id))
+        if (int.TryParse(idEntry.Text, out int id))
         {
-            lista.Agregar(id, entryRepuesto.Text, entryDetalles.Text);
-            output.Buffer.Text += $"Agregado: {id}, {entryRepuesto.Text}, {entryDetalles.Text}\n";
+            lista.AgregarRepuesto(id, repuestoEntry.Text, detallesEntry.Text);
+            resultadoLabel.Text = "Repuesto agregado con éxito";
         }
         else
         {
-            output.Buffer.Text += "ID inválido.\n";
+            resultadoLabel.Text = "ID inválido";
         }
     }
 
-    private void OnBuscarClicked(object sender, EventArgs e)
+    private void BuscarRepuesto(object sender, EventArgs e)
     {
-        if (int.TryParse(entryID.Text, out int id))
+        if (int.TryParse(idEntry.Text, out int id))
         {
-            unsafe
-            {
-                Nodo* encontrado = lista.Buscar(id);
-                if (encontrado != null)
-                {
-                    output.Buffer.Text += $"Encontrado: {encontrado->ID}, {encontrado->Repuesto}, {encontrado->Detalles}\n";
-                }
-                else
-                {
-                    output.Buffer.Text += "No encontrado.\n";
-                }
-            }
+            Nodo encontrado = lista.BuscarRepuesto(id);
+            if (encontrado != null)
+                resultadoLabel.Text = $"Repuesto: {encontrado.Repuesto}, Detalles: {encontrado.Detalles}";
+            else
+                resultadoLabel.Text = "Repuesto no encontrado";
         }
         else
         {
-            output.Buffer.Text += "ID inválido.\n";
+            resultadoLabel.Text = "ID inválido";
         }
     }
+}
 
+class Program
+{
     public static void Main()
     {
         Application.Init();
-        new AplicacionGTK();
+        new MainWindow();
         Application.Run();
     }
 }
